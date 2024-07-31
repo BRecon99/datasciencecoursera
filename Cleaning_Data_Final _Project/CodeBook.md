@@ -78,7 +78,7 @@ The following transformations were performed on the data:
 
 4. **Labeling Data Set**: Descriptive variable names were applied to the dataset by renaming the columns with meaningful names (e.g., `tBodyAcc-mean()-X` to `TimeBodyAccelerationMeanX`).
 
-5. **Creating Independent Tidy Data Set**: A second, independent tidy data set was created with the average of each variable for each activity and each subject using `reshape2` functions `melt` and `dcast`.
+5. **Creating Independent Tidy Data Set**: A second, independent tidy data set was created with the average of each variable for each activity and each subject using `reshape2` function `melt` and `dlpyr` functions `group` and `sumarize`, afterward a new txt file was created with the function `fwrite` on the `tidy_mean` dataset created.
 
 ## Final Data Set
 
