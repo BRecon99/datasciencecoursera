@@ -80,8 +80,9 @@ fulltabble[["activity"]] <- factor(fulltabble[, activity]
 #"creates a second, independent tidy data set with the average of each variable for each activity and each subject."
 #To do that we create a subset of full table and make cols with activity and subject:
 fulltabble[["subjectlable"]] <- as.factor(fulltabble[, subjectlable])
-fulltabble <- reshape2::melt(fulltabble, id = c("subjectlable", "activity"))
 #now we call activity and subject and each former col a row of col variable, and get the means of each test:
-fulltabble<- reshape2::dcast(fulltabble, subjectlable + activity ~ variable, fun.aggregate = mean)
-#now, as oriented we make a file called tidy data with these changes on full table:
-data.table::fwrite(x = fulltabble, file = "tidydata.txt", quote = FALSE)
+tidy_mean <- fulltabble %>%
+  group_by(subjectlable, activity) %>%
+  summarise(across(everything(), mean, na.rm = TRUE))
+#now, as oriented we make a text file called tidy data with these changes on full table:
+data.table::fwrite(x = tidy_mean, file = "tidyData.txt", quote = FALSE)
