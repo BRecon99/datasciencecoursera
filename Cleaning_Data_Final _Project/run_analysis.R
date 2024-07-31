@@ -1,22 +1,22 @@
 setwd("C:/Users/giova/Documents/datasciencecoursera")
 
 #Load Packages:
-
+library(dplyr)
 packages <- c("data.table", "reshape2")
 sapply(packages, require, character.only=TRUE, quietly=TRUE)
 
-# Load data and unzip:
+#Load data on the zip file, without extracting:
 #here we set a general directory and further we make partial calls inside the folders
 path <- getwd()
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(url, file.path(path, "dataFiles.zip"))
 unzip(zipfile = "dataFiles.zip")
 
-#Load activity labels
+#Load activity labels:
 #we use general folder on path and call folder/document inside it:
 activityLabels <- fread(file.path(path, "UCI HAR Dataset/activity_labels.txt")
                         , col.names = c("labelnumber", "activityname"))
-#load features
+#load features:
 features <- fread(file.path(path, "UCI HAR Dataset/features.txt")
                   , col.names = c("labelindex", "featurename"))
 #here we opened the documents and set col names that were before V1 and V2
